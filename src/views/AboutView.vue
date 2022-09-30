@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <h1>
+      Doing my best :) <br />
       ps: can't think of 'Load More' logic because the API didn't give
       pagination example
     </h1>
