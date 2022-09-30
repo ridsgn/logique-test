@@ -6,6 +6,7 @@ const router = useRouter();
 const inputName = ref(null);
 
 const onSearch = () => {
+  if (!inputName.value) return;
   router.replace({ name: "result", params: { name: inputName.value } });
 };
 </script>
@@ -25,6 +26,7 @@ const onSearch = () => {
     class="search-input"
     type="text"
     placeholder="Artist / Album / Title"
+    @keypress.enter="onSearch"
   />
 
   <button @click="onSearch" class="button-search">Search</button>

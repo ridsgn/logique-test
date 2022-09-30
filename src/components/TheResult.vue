@@ -1,12 +1,13 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useFetch } from "../composable/fetch";
 import CardItem from "./CardItem.vue";
 
 const url = ref(`https://itunes.apple.com/search?term=json+mraz&limit=4`);
 
 const route = useRoute();
+const router = useRouter();
 
 const test = route.params.name.split(" ").join("+");
 
@@ -15,11 +16,19 @@ const { data } = useFetch(url);
 onMounted(() => {
   url.value = `https://itunes.apple.com/search?term=${test}&limit=4`;
 });
+
+const goToHome = () => {
+  router.replace({ name: "home" });
+};
 </script>
 
 <template>
   <!-- <pre>{{ data?.results }}</pre> -->
-  <div class="header">ngmusic</div>
+  <div class="header">
+    <img src="@/assets/menu.svg" alt="" />
+    <p>ngmusic</p>
+    <img @click="goToHome" class="search" src="@/assets/search.svg" alt="" />
+  </div>
 
   <div class="center">
     Search result for : <span>{{ route.params.name }}</span>
@@ -50,13 +59,19 @@ onMounted(() => {
 </template>
 
 <style>
+.search {
+  cursor: pointer;
+}
+
 .card-wrapper {
   padding: 0 15px;
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 60px;
-  text-align: center;
   padding: 18px 15px 22.2px;
   box-shadow: 0 0 6px 0 rgba(148, 77, 230, 0.75);
   background-image: linear-gradient(100deg, #712bda, #a45deb 100%);

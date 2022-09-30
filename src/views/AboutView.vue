@@ -1,6 +1,9 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>
+      ps: can't think of 'Load More' logic because the API didn't give
+      pagination example
+    </h1>
   </div>
 </template>
 
